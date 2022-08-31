@@ -1,6 +1,7 @@
-_*Shell Basics*_\n
-<strong>0-current_working_directory:</strong> Prints the absolute path name of the current working directory.\n
-<strong>1-listit:</strong> Displays the contents list of current directory.\n
-<strong>2-bring_me_home:</strong> Changes the working directory to the user’s home directory.\n
-**3-listfiles:** Displays the current directory contents in a long format.\n
-<strong>4-listmorefiles</strong>Displays current directory contents, including hidden files.\n
+<strong><u>_*Shell Basics*_</u></strong> <br>
+<strong>0-current_working_directory:</strong> Prints the absolute path name of the current working directory. <br>
+<strong>1-listit:</strong> Displays the contents list of current directory. <br>
+<strong>2-bring_me_home:</strong> Changes the working directory to the user’s home directory. <br>
+<strong>3-listfiles:</strong> Displays the current directory contents in a long format. <br>
+<strong>4-listmorefiles</strong>Displays current directory contents, including hidden files. <br>
+<strong>5-listfilesdigitonly</strong>Displays current directory contents in long format with user and group IDs displayed numerically and hidden files. <br>
