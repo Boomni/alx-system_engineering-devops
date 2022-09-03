@@ -16,8 +16,9 @@ Switches the current user to the user betty.
 12.   * [11-directories_permissions](./11-directories_permissions): Adds execute permission to all subdirectories of the current directory for the owner, the group owner and all other users.
 13.   * [12-directory_permissions](./12-directory_permissions): Creates a directory called my_dir with permissions 751 in the working directory.
 14.   * [13-change_group](./13-change_group): Changes the group owner to school for the file hello
-15.   * [](./): 
-16.   * [](./): 
-17.   * [](./): 
+15.   * [100-change_owner_and_group](./100-change_owner_and_group): changes the owner to vincent and the group owner to staff for all the files and directories in the working directory.
+16.   * [101-symbolic_link_permissions](./101-symbolic_link_permissions): Changes the owner and the group owner of _hello to vincent and staff respectively. The file _hello is a symbolic link
+17.   * [102-if_only](./102-if_only): Changes the owner of the file hello to betty only if it is owned by the user guillaume.
+18.   * [103-Star_Wars](./103-Star_Wars): Plays the StarWars IV episode in the terminal. 
 
 
