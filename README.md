@@ -8,4 +8,5 @@ It contains programs written for the system engineering and DevOps track at 'ALX
 
 1. * [0x00. Shell, basics](./0x00-shell_basics)
 2. * [0x01. Shell, permissions](./0x01-shell_permissions)
+3. * [0x02. Shell, redirections](./0x02-shell_redirections)
 
