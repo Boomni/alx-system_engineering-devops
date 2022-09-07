@@ -1,2 +1,2 @@
 #!/bin/bash
-tree
+tree | tail -1
