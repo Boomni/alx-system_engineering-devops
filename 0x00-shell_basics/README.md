@@ -7,7 +7,7 @@
 3.    * [2-bring_me_home](./2-bring_me_home): Changes the working directory to the user’s home directory. 
 4.    * [3-listfiles](./3-listfiles): Displays the current directory contents in a long format. 
 5.    * [4-listmorefiles](./4-listmorefiles): Displays current directory contents, including hidden files. 
-6.    * [5-listfilesdigitsonly](./5-listfilesdigitsonly): Displays current directory contents in long format with user and group IDs displayed numerically and hidden files. 
+6.    * [5-listfilesdigitonly](./5-listfilesdigitonly): Displays current directory contents in long format with user and group IDs displayed numerically and hidden files. 
 7.    * [6-firstdirectory](./6-firstdirectory): Creates a directory named my_first_directory in the /tmp/ directory.
 8.    * [7-movethatfile](./7-movethatfile): Moves the file betty from /tmp/ to /tmp/my_first_directory.
 9.    * [8-firstdelete](./8-firstdelete): Deletes the file betty which is in /tmp/my_first_directory.
