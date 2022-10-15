@@ -1,6 +1,6 @@
-#<u>_**Shell Basics**_</u>
+# _Shell Basics_
 
-**The following are basic shell scripts that perform the various functions:**
+**These are basic shell scripts I wrote. They perform the following functions:**
 
 1.    * [0-current_working_directory](./0-current_working_directory): Prints the absolute path name of the current working directory.
 2.    * [1-listit](./1-listit): Displays the contents list of current directory.
