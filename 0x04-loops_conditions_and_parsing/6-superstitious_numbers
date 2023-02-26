@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# This is a bash script that loops from 1 to 20
+# displays 4 and then bad luck from China for the 4th loop iteration
+# displays 9 and then bad luck from Japan for the 9th loop iteration
+# displays 17 and then bad luck from Italy for the 17th loop iteration
+# Using a while loop
+# Using case statement
+x=1
+while [ $x -le 20 ];
+do
+	case $x in
+		4)
+			printf "bad luck from China\n";;
+		9)
+			printf "bad luck from Japan\n";;
+		17)
+			printf "bad luck from Italy\n";;
+		*)
+			printf "%s\n" "$x"
+	esac
+	(( x++ ))
+done
