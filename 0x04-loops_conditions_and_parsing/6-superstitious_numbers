@@ -10,10 +10,13 @@ while [ $x -le 20 ];
 do
 	case $x in
 		4)
+			printf "%s\n" "$x"
 			printf "bad luck from China\n";;
 		9)
+			printf "%s\n" "$x"
 			printf "bad luck from Japan\n";;
 		17)
+			printf "%s\n" "$x"
 			printf "bad luck from Italy\n";;
 		*)
 			printf "%s\n" "$x"

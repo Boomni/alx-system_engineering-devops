@@ -4,13 +4,13 @@
 # displays good luck for the 8th loop iteration
 # displays Best School for the other iterations
 # Using a while loop
-x=0
-while [ $x -lt 10 ];
+x=1
+while [ $x -le 10 ];
 do
-	if [ $x == 3 ]
+	if [ $x == 4 ]
 	then
 		printf "bad luck\n"
-	elif [ $x == 7 ]
+	elif [ $x == 8 ]
 	then
 		printf "good luck\n"
 	else
