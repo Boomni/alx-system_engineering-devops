@@ -9,16 +9,16 @@
 
 for num in {1..100}
 do
-  if (( num % 3 == 0 && num % 5 == 0 ))
+  if (( num % 15 == 0 ))
   then
-    echo "FizzBuzz"
+    printf "FizzBuzz\n"
   elif (( num % 3 == 0 ))
   then
-    echo "Fizz"
+    printf "Fizz\n"
   elif (( num % 5 == 0 ))
   then
-    echo "Buzz"
+    printf "Buzz\n"
   else
-    echo "$num"
+    printf "%s" "$num"
   fi
 done
