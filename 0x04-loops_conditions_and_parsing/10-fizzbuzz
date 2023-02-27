@@ -8,15 +8,20 @@
 # In a list format
 
 x=1
-for i in [ $x -le 100 ]
+while [ $x -le 100 ]
 do
         if [ $x % 15 == 0]
+        then
                 printf "FizzBuzz\n"
         elif [ $x % 5 == 0 ]
+        then
                 printf "Fizz\n"
         elif [ $x % 3 == 0 ]
+        then
                 printf "Buzz\n"
         else
-                printf "%s" "$i"
+        then
+                printf "%s" "$x"
         fi
+        (( x++ ))
 done
