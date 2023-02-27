@@ -7,18 +7,18 @@
 # Otherwise, displays the number
 # In a list format
 
-for num in {1..100}
+for i in {1..100}
 do
-  if (( num % 15 == 0 ))
+  if [ $((i%15)) -eq 0 ];
   then
-    printf "FizzBuzz\n"
-  elif (( num % 3 == 0 ))
+    echo "FizzBuzz"
+  elif [ $((i%3)) -eq 0 ];
   then
-    printf "Fizz\n"
-  elif (( num % 5 == 0 ))
+    echo "Fizz"
+  elif [ $((i%5)) -eq 0 ];
   then
-    printf "Buzz\n"
+    echo "Buzz"
   else
-    printf "%s" "$num"
+    echo "$i"
   fi
 done
