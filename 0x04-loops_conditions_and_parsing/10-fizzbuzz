@@ -7,20 +7,18 @@
 # Otherwise, displays the number
 # In a list format
 
-x=1
-while [ $x -le 100 ];
+for num in {1..100}
 do
-        if [ $(( $x % 15 )) -eq 0 ]
-        then
-                printf "FizzBuzz\n"
-        elif [ $(( $x % 5 )) -eq 0 ]
-        then
-                printf "Fizz\n"
-        elif [ $(( $x % 3 )) -eq 0 ]
-        then
-                printf "Buzz\n"
-        else
-                printf "%s\n" "$x"
-        fi
-        (( x++ ))
+  if (( num % 3 == 0 && num % 5 == 0 ))
+  then
+    echo "FizzBuzz"
+  elif (( num % 3 == 0 ))
+  then
+    echo "Fizz"
+  elif (( num % 5 == 0 ))
+  then
+    echo "Buzz"
+  else
+    echo "$num"
+  fi
 done
