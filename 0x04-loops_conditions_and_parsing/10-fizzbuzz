@@ -10,17 +10,16 @@
 x=1
 while [ $x -le 100 ]
 do
-        if [ $x % 15 == 0]
+        if [ $(( $x % 15 )) -eq 0 ]
         then
                 printf "FizzBuzz\n"
-        elif [ $x % 5 == 0 ]
+        elif [ $(( $x % 5 )) -eq 0 ]
         then
                 printf "Fizz\n"
-        elif [ $x % 3 == 0 ]
+        elif [ $(( $x % 3 )) -eq 0 ]
         then
                 printf "Buzz\n"
         else
-        then
                 printf "%s" "$x"
         fi
         (( x++ ))
