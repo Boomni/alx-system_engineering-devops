@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# kill script from exercise 4
+kill "$(pgrep -f to_infinity_and_beyond)"
