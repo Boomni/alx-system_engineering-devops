@@ -8,7 +8,7 @@
 # In a list format
 
 x=1
-while [ $x -le 100 ]
+while [ $x -le 100 ];
 do
         if [ $(( $x % 15 )) -eq 0 ]
         then
