@@ -20,7 +20,7 @@ do
         then
                 printf "Buzz\n"
         else
-                printf "%s" "$x"
+                printf "%s\n" "$x"
         fi
         (( x++ ))
 done
