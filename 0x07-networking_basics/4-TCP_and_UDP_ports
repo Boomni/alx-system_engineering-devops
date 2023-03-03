@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-:<<'COMMENT'
-Bash script that displays listening ports
+# Bash script that displays listening ports
 
-Requirements:
-- Only shows listening sockets
-- Shows the PID and name of the program to which each socket belongs
-COMMENT
+# Requirements:
+# - Only shows listening sockets
+# - Shows the PID and name of the program to which each socket belongs
+
 netstat -lp
