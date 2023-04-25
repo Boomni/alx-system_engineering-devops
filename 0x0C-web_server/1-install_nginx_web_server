@@ -1,21 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# installs nginx and configure it to listen on port 80
+# print "Hello World"
 
-# Install Nginx
-sudo apt update
-sudo apt install nginx -y
-
-# Configure Nginx to return "Hello World!" when a GET request is made to its root /
-sudo tee /etc/nginx/sites-available/default > /dev/null <<EOF
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    root /var/www/html;
-    index index.html;
-    location / {
-        echo "Hello World!";
-    }
-}
-EOF
-
-# Restart Nginx
-sudo service nginx restart
+sudo apt-get update
+sudo apt-get -y install nginx
+echo 'Hello World!' > /var/www/html/index.html
+service nginx start
