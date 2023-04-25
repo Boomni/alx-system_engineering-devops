@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Install Nginx
+sudo apt update
+sudo apt install nginx -y
+
+# Configure Nginx to return "Hello World!" when a GET request is made to its root /
+sudo tee /etc/nginx/sites-available/default > /dev/null <<EOF
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    root /var/www/html;
+    index index.html;
+    location / {
+        echo "Hello World!";
+    }
+}
+EOF
+
+# Restart Nginx
+sudo service nginx restart
