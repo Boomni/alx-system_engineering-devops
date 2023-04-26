@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [ ! -x "$(command -v nginx)" ]; then
+    sudo apt-get update
+    sudo apt-get install -y nginx
+fi
+
+# Check if redirection configuration already exists
+if ! grep -q "#redirect 301              /redirect_me" /etc/nginx/sites-available/default; then
+    sudo sed -i '/server_name  localhost;/a\    #redirect 301              /redirect_me\n    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/sites-available/default
+fi
+
+if ! grep -q "#redirect 301              /redirect_me" /etc/nginx/conf.d/default.conf; then
+    sudo sed -i '/server_name  localhost;/a\    #redirect 301              /redirect_me\n    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/conf.d/default.conf
+fi
+
+sudo service nginx restart
