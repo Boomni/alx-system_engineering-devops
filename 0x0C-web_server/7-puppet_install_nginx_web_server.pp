@@ -13,9 +13,24 @@ file {'/var/www/html/index.html':
   content => 'Hello World!'
 }
 
-exec {'redirect_me':
-  command  => "sudo sed -i 's#server_name _;#server_name _;\n\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}#g' /etc/nginx/sites-available/default",
-  provider => 'shell'
+file {'/etc/nginx/sites-available/default':
+  content => "
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name _;
+  root /var/www/html;
+
+  location /redirect_me {
+    return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+  }
+
+  location / {
+    try_files \$uri \$uri/ =404;
+  }
+}
+",
+  notify  => Service['nginx']
 }
 
 service {'nginx':
