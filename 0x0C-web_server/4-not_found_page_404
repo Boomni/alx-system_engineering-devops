@@ -3,8 +3,7 @@
 
 # Check if 404 page configuration already exists
 if ! grep -q "#location = /404.html {" /etc/nginx/sites-available/default; then
-	sudo sed 's#server_name _;#server_name _;\n\n\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\tinternal;\n\t\troot /var/www/html;\n\t}\n#g' /etc/nginx/sites-available/default > /tmp/default.tmp
-	sudo mv /tmp/default.tmp /etc/nginx/sites-available/default
+	sudo sed 's#server_name _;#server_name _;\n\n\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\tinternal;\n\t\troot /var/www/html;\n\t}\n#g' /etc/nginx/sites-available/default
 fi
 
 sudo service nginx restart
