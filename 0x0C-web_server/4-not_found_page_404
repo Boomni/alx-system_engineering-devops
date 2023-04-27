@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 #Configures my Nginx server to have a custom 404 page that contains the string Ceci n'est pas une page
-
+echo 'Hello World!' > /var/www/html/index.html
+# Check if redirection configuration already exists
+if ! grep -q "#location /redirect_me" /etc/nginx/sites-available/default; then
+        sudo sed 's#server_name _;#server_name _;\n\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}#g' /etc/nginx/sites-available/default
+fi
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 # Check if 404 page configuration already exists
 if ! grep -q "#location = /404.html {" /etc/nginx/sites-available/default; then
