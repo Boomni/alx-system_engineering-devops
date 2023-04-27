@@ -5,9 +5,9 @@ apt-get -y update
 apt-get -y install nginx
 
 echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
-sudo sed 's#server_name _;#server_name _;\n\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}#g' /etc/nginx/sites-available/default
+sudo sed -i 's#server_name _;#server_name _;\n\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}#g' /etc/nginx/sites-available/default
 
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
-sudo sed 's#server_name _;#server_name _;\n\n\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\tinternal;\n\t\troot /var/www/html;\n\t}\n#g' /etc/nginx/sites-available/default
+sudo sed -i 's#server_name _;#server_name _;\n\n\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\tinternal;\n\t\troot /var/www/html;\n\t\tadd_header Content-Type "text/html";\n\t}\n#g' /etc/nginx/sites-available/default
 
 service nginx restart
