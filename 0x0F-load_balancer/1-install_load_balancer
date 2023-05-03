@@ -10,18 +10,15 @@ if [ ! -x "$(command -v haproxy)" ]; then
 fi
 
 echo "
-frontend lb-frontend
-  bind *:80
-  mode http
-  default_backend lb-backend
+frontend 101877-lb-01
+        bind *:80
+        mode http
+        default_backend server
 
-backend lb-backend
-  mode http
-  balance roundrobin
-  server web-01 [STUDENT_ID]-web-01:80 check
-  server web-02 [STUDENT_ID]-web-02:80 check" | sudo tee /etc/haproxy/haproxy.cfg
-
-# Enables HAProxy init script
-sudo sed -i 's/^ENABLED=.*/ENABLED=1/' /etc/default/haproxy
+backend server
+        balance roundrobin
+        mode http
+        server 101877-web-01 54.237.112.44:80 check
+        server 101877-web-02 35.175.63.68:80 check" | sudo tee /etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart
