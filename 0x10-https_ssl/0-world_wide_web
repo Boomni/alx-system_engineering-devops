@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+#Requirements:
+
+# Configure my domain zone:
+# - Added subdomain www to my domain, so www.boomni.tech => 18.209.225.9
+# - Added subdomain lb-01 to my domain, so lb-01.boomni.tech => 18.209.225.9
+# - Added subdomain web-01 to my domain, so web-01.boomni.tech => 54.237.112.44
+# - Added subdomain web-02 to my domain, so web-02.boomni.tech => 35.175.63.68
+
+# Bash script must accept 2 arguments:
+# - domain:
+# - subdomain:
+
+# Output: The subdomain [SUB_DOMAIN] is a [RECORD_TYPE] record and points to [DESTINATION]
+# When only the parameter domain is provided, display information for its subdomains www, lb-01, web-01 and web-02 - in this specific order
+# When passing domain and subdomain parameters, display information for the specified subdomain
+
+subdomains_list=( "www" "lb-01" "web-01" "web-02" )
+
+function runDig () {
+    subdomain=$1
+    domain=$2
+
+    answer_section=$(dig "$subdomain.$domain" | grep -A1 'ANSWER SECTION:')
+
+    ip_line=$(echo "$answer_section" | tail -1)
+
+    record_type=$(echo "$ip_line" | awk -v s="$subdomain" '{ print $4 }')
+    ip_address=$(echo "$ip_line" | awk '{ print $5 }')
+
+    echo "The subdomain $subdomain is a $record_type record and points to $ip_address"
+}
+
+if [ $# -eq 1 ]; then
+    for subdomain in "${subdomains_list[@]}"; do
+        runDig "$subdomain" "$1"
+    done
+elif [ $# -eq 2 ]; then
+    runDig "$2" "$1"
+fi
