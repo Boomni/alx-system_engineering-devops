@@ -1,4 +1,3 @@
-ubuntu@101877-lb-01:~$ cat /etc/haproxy/haproxy.cfg
 global
 	log /dev/log	local0
 	log /dev/log	local1 notice
