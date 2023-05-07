@@ -40,7 +40,7 @@ defaults
 
 frontend http
         bind *:80
-	redirect scheme https if !{ ssl_fc }
+	redirect scheme https code 301 if !{ ssl_fc }
         default_backend server
 
 frontend https
