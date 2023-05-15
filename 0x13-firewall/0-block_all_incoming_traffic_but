@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
-# Install firewalls, block any incoming request except on 22, 443 and 80 ports
+# Install firewall, block any incoming request except on 22, 443 and 80 ports
+# install ufw, support both IPv4 and IPv6, and ensure default values
+sudo apt-get -y update
 sudo apt-get install ufw
+sudo ufw disable
 sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo systemctl stop ufw
+# configure
 sudo ufw allow 22/tcp
 sudo ufw allow 443/tcp
 sudo ufw allow 80/tcp
+# start
 sudo ufw enable
