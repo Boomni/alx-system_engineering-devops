@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+su - "$1" -c "whoami"
