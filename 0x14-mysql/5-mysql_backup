@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# backup and compress my databases losses
+# if the datacenter where both primary and replica database servers
+# are hosted are down
+
+date=$(date +"%d-%m-%Y")
+file_name="$date.tar.gz"
+
+mysqldump --all-databases -u root --password="$1" > backup.sql
+tar -czvf "$file_name" backup.sql
