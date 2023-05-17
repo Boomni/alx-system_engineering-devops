@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# fix container:: task 1
-sed -Ei 's/\s*#?\s*user .*/user nginx;/' /etc/nginx/nginx.conf
-sed -Ei 's/(listen (\[::\]:)?80) /\180 /' /etc/nginx/sites-enabled/default
-pkill apache2
-su nginx -s /bin/bash -c 'service nginx restart'
+ # Fix this container so that Nginx is running as the nginx user.
+ # Bash script that runs nginx webserver as nginx and also 
+ # Configures nginx to listen to port 8080
+ pkill apache2
+ sed -i 's/80/8080/g' /etc/nginx/sites-available/default
+ chmod 644 /etc/nginx/nginx.conf
+ sudo -u nginx service nginx restart
