@@ -20,16 +20,9 @@ file { '/etc/apache2/sites-available/000-default.conf':
   ServerAdmin webmaster@localhost
   DocumentRoot /var/www/html
 
-  <Directory /var/www/html>
-    Options Indexes FollowSymLinks
-    AllowOverride None
-    Require all granted
-  </Directory>
-
   ErrorLog ${APACHE_LOG_DIR}/error.log
   CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ",
   notify  => Service['apache2'],
 }
-
