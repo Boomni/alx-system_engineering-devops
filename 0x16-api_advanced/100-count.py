@@ -1,17 +1,15 @@
 #!/usr/bin/python3
-"""
-100-count
-"""
-
-import requests
+"""Module for task 3"""
 
 
 def count_words(subreddit, word_list, word_count={}, after=None):
     """Queries the Reddit API and returns the count of words in
     word_list in the titles of all the hot posts
     of the subreddit"""
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    sub_info = requests.get(url,
+    import requests
+
+    sub_info = requests.get("https://www.reddit.com/r/{}/hot.json"
+                            .format(subreddit),
                             params={"after": after},
                             headers={"User-Agent": "My-User-Agent"},
                             allow_redirects=False)
@@ -47,4 +45,3 @@ def count_words(subreddit, word_list, word_count={}, after=None):
     else:
         return count_words(subreddit, word_list, word_count,
                            info.get("data").get("after"))
-
