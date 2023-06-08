@@ -6,41 +6,45 @@
 import requests
 
 
-def count_words(subreddit, word_list, after=None, count_dict={}):
-    """Prints a sorted count of given keywords in the titles of all hot articles for a given subreddit"""
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=100"
-    headers = {"User-Agent": "Custom User Agent"}
-    params = {"after": after}
+def count_words(subreddit, word_list, word_count={}, after=None):
+    """Queries the Reddit API and returns the count of words in
+    word_list in the titles of all the hot posts
+    of the subreddit"""
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    sub_info = requests.get(url,
+                            params={"after": after},
+                            headers={"User-Agent": "My-User-Agent"},
+                            allow_redirects=False)
+    if sub_info.status_code != 200:
+        return None
 
-    response = requests.get(url, headers=headers, params=params)
+    info = sub_info.json()
 
-    if response.status_code == 200:
-        data = response.json()
-        posts = data["data"]["children"]
-        after = data["data"]["after"]
+    hot_l = [child.get("data").get("title")
+             for child in info
+             .get("data")
+             .get("children")]
+    if not hot_l:
+        return None
 
-        for post in posts:
-            title = post["data"]["title"]
-            words = title.lower().split()
+    word_list = list(dict.fromkeys(word_list))
 
-            for word in word_list:
-                count = words.count(word.lower())
-                if count > 0:
-                    if word.lower() in count_dict:
-                        count_dict[word.lower()] += count
-                    else:
-                        count_dict[word.lower()] = count
+    if word_count == {}:
+        word_count = {word: 0 for word in word_list}
 
-        if after is not None:
-            count_words(subreddit, word_list, after, count_dict)
+    for title in hot_l:
+        split_words = title.split(' ')
+        for word in word_list:
+            for s_word in split_words:
+                if s_word.lower() == word.lower():
+                    word_count[word] += 1
 
-    elif response.status_code == 404:
-        return
+    if not info.get("data").get("after"):
+        sorted_counts = sorted(word_count.items(), key=lambda kv: kv[0])
+        sorted_counts = sorted(word_count.items(),
+                               key=lambda kv: kv[1], reverse=True)
+        [print('{}: {}'.format(k, v)) for k, v in sorted_counts if v != 0]
+    else:
+        return count_words(subreddit, word_list, word_count,
+                           info.get("data").get("after"))
 
-    if not count_dict:
-        return
-
-    sorted_counts = sorted(count_dict.items(), key=lambda x: (-x[1], x[0]))
-
-    for word, count in sorted_counts:
-        print(f"{word}: {count}")
