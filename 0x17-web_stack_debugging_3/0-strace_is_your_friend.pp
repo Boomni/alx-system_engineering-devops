@@ -1,28 +1,6 @@
-# Puppet manifest to fix Apache 500 error
+# Fixes bad `phpp` extensions to `php` in the WordPress file `wp-settings.php`.
 
-# Install Apache package
-package { 'apache2':
-  ensure => installed,
-}
-
-# Ensure Apache service is running
-service { 'apache2':
-  ensure => running,
-  enable => true,
-}
-
-# Fix Apache configuration
-file { '/etc/apache2/sites-available/000-default.conf':
-  ensure  => present,
-  mode    => '0644',
-  content => "
-<VirtualHost *:80>
-  ServerAdmin webmaster@localhost
-  DocumentRoot /var/www/html
-
-  ErrorLog ${APACHE_LOG_DIR}/error.log
-  CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-",
-  notify  => Service['apache2'],
+exec { 'fix-wordpress':
+  command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
+  path    => '/usr/local/bin/:/bin/'
 }
